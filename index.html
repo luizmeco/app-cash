@@ -54,8 +54,7 @@
         margin-top: 5rem;
         border-radius: 20px;
         min-width: 90%;
-        background-color: black;
-        height: 100vh;
+        min-height: 100vh;
         box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.497);
         padding: 3rem 2rem;
       }
@@ -70,11 +69,14 @@
         border-radius: 1px;
       }
       .gastos {
-        background-color:rgba(255, 251, 185, 1);
         padding: 1rem;
         border-radius: 10px;
-        border: solid #198754;
-
+        align-items: center;
+      }
+      .gasto-btn-e {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
       }
     </style>
   </head>
@@ -124,14 +126,37 @@
           ALTERAR RENDA
         </button>
       </div>
-      <div class="gastos">
-        <i class="fa-solid fa-bus fs-1 "></i>
-        <span class="fs-2">R$200,00</span>
+
+      <div id="lista-gastos"></div>
+
+      <div class="footer-gastos d-flex justify-content-between mt-4">
+        <div class="add-gasto">
+          <button
+            onclick="addGasto()"
+            class="btn btn-lg btn-success rounded-circle"
+          >
+            <i class="fa-solid fa-plus fs-1"></i>
+          </button>
+        </div>
+        <div class="d-flex gap-2 text-end">
+          <div>
+            <span class="text-saldo text-success fs-2 fw-bold"
+              >SALDO MENSAL:</span
+            ><br />
+            <span id="saldo-mensal" class="text-success fs-1">R$00,00</span>
+          </div>
+          <div class="linha-renda bg-success"></div>
+        </div>
       </div>
     </div>
   </body>
   <script>
     var textRenda = document.getElementById("renda-mensal");
+    var textSaldo = document.getElementById("saldo-mensal");
+    var divLista = document.getElementById("lista-gastos");
+    var totalGastos = 0;
+    var saldo = 0;
+
     async function alterarRenda() {
       var { value: renda } = await Swal.fire({
         title: "Insira sua renda",
@@ -149,7 +174,6 @@
           });
         },
       });
-      textRenda.innerHTML = "";
       if (renda) {
         renda = new Intl.NumberFormat("pt-BR", {
           style: "currency",
@@ -160,8 +184,193 @@
           confirmButtonColor: "#198754",
           icon: "success",
         });
-        textRenda.innerHTML = renda
+        textRenda = document.getElementById("renda-mensal");
+        textRenda.innerHTML = renda;
+        corrigirSaldo();
       }
+    }
+    async function addGasto() {
+      const { value: type } = await Swal.fire({
+        title: "Selecione o tipo do seu gasto",
+        input: "select",
+        inputOptions: {
+          transporte: "Transporte",
+          alimentacao: "Alimentacao",
+          entretenimento: "Entretenimento",
+          contas: "Contas",
+        },
+        confirmButtonColor: "#198754",
+        inputPlaceholder: "Selecione o gasto",
+        allowOutsideClick: false,
+        showCancelButton: true,
+        inputValidator: (value) => {
+          return new Promise((resolve) => {
+            if (value != 0) {
+              resolve();
+            } else {
+              resolve("Selecione um tipo!");
+            }
+          });
+        },
+      });
+      if (type) {
+        var { value: descricaoGasto } = await Swal.fire({
+          title: "Insira o título do seu gasto",
+          input: "text",
+          inputPlaceholder: "Título",
+          confirmButtonColor: "#198754",
+          allowOutsideClick: false,
+          inputValidator: (value) => {
+            return new Promise((resolve) => {
+              if (value != 0) {
+                resolve();
+              } else {
+                resolve("Insira o Título!");
+              }
+            });
+          },
+        });
+        if (descricaoGasto) {
+          var { value: valorGasto } = await Swal.fire({
+            title: "Insira o valor do seu gasto",
+            input: "number",
+            inputPlaceholder: "Valor",
+            confirmButtonColor: "#198754",
+            allowOutsideClick: false,
+            inputValidator: (value) => {
+              return new Promise((resolve) => {
+                if (value < 0) {
+                  resolve("Insira um valor positivo!");
+                } else if (value == 0) {
+                  resolve("Insira um valor");
+                } else {
+                  resolve();
+                }
+              });
+            },
+          });
+        }
+      }
+      totalGastos += parseFloat(valorGasto);
+
+      corrigirSaldo();
+
+      valorGasto = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(valorGasto);
+      if (type == "transporte") {
+        var gasto = document.createElement("div");
+        gasto.classList.add("gastos");
+        gasto.classList.add("d-flex");
+        gasto.classList.add("justify-content-between");
+        gasto.classList.add("text-success");
+        gasto.classList.add("border");
+        gasto.classList.add("border-success");
+        gasto.classList.add("border-2");
+        gasto.classList.add("mt-2");
+        gasto.innerHTML = `<div>
+            <i class="fa-solid fa-bus fs-1"></i>
+            <span class="desc-gasto fs-1">${descricaoGasto}</span>
+          </div>
+          <div class="gasto-btn-e">
+            <span class="fs-2">${valorGasto}</span>
+            <button onclick="excluirGasto(this)" class="button-excluir btn btn-danger">
+              <i class="fa-solid fa-x"></i>
+            </button>
+          </div>`;
+        divLista.appendChild(gasto);
+      }
+      if (type == "alimentacao") {
+        var gasto = document.createElement("div");
+        gasto.classList.add("gastos");
+        gasto.classList.add("d-flex");
+        gasto.classList.add("justify-content-between");
+        gasto.classList.add("text-warning");
+        gasto.classList.add("border");
+        gasto.classList.add("border-warning");
+        gasto.classList.add("border-2");
+        gasto.classList.add("mt-2");
+        gasto.innerHTML = `<div>
+            <i class="fa-solid fa-pizza-slice fs-1"></i>
+            <span class="desc-gasto fs-1">${descricaoGasto}</span>
+          </div>
+          <div class="gasto-btn-e">
+            <span class="fs-2">${valorGasto}</span>
+            <button onclick="excluirGasto(this)" class="button-excluir btn btn-danger">
+              <i class="fa-solid fa-x"></i>
+            </button>
+          </div>`;
+        divLista.appendChild(gasto);
+      }
+      if (type == "entretenimento") {
+        var gasto = document.createElement("div");
+        gasto.classList.add("gastos");
+        gasto.classList.add("d-flex");
+        gasto.classList.add("justify-content-between");
+        gasto.classList.add("text-info");
+        gasto.classList.add("border");
+        gasto.classList.add("border-info");
+        gasto.classList.add("border-2");
+        gasto.classList.add("mt-2");
+        gasto.innerHTML = `<div>
+            <i class="fa-solid fa-gamepad fs-1"></i>
+            <span class="desc-gasto fs-1">${descricaoGasto}</span>
+          </div>
+          <div class="gasto-btn-e">
+            <span class="fs-2">${valorGasto}</span>
+            <button onclick="excluirGasto(this)" class="button-excluir btn btn-danger">
+              <i class="fa-solid fa-x"></i>
+            </button>
+          </div>`;
+        divLista.appendChild(gasto);
+      }
+      if (type == "contas") {
+        var gasto = document.createElement("div");
+        gasto.classList.add("gastos");
+        gasto.classList.add("d-flex");
+        gasto.classList.add("justify-content-between");
+        gasto.classList.add("text-primary");
+        gasto.classList.add("border");
+        gasto.classList.add("border-primary");
+        gasto.classList.add("border-2");
+        gasto.classList.add("mt-2");
+        gasto.innerHTML = `<div>
+            <i class="fa-solid fa-file-invoice-dollar fs-1"></i>
+            <span class="desc-gasto fs-1">${descricaoGasto}</span>
+          </div>
+          <div class="gasto-btn-e">
+            <span class="fs-2">${valorGasto}</span>
+            <button onclick="excluirGasto(this)" class="button-excluir btn btn-danger">
+              <i class="fa-solid fa-x"></i>
+            </button>
+          </div>`;
+        divLista.appendChild(gasto);
+      }
+    }
+    async function corrigirSaldo() {
+      textRenda = document.getElementById("renda-mensal");
+      textRenda = textRenda.innerText.replace(/[R$.\s]/g, "").replace(",", ".");
+      textRenda = parseFloat(textRenda);
+
+      saldo = textRenda - totalGastos;
+
+      saldo = saldo = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(saldo);
+
+      textSaldo.innerHTML = saldo;
+    }
+    async function excluirGasto(botao) {
+      const elementoPai = botao.parentNode.parentNode;
+      var span = botao.parentNode.querySelector('span');
+      span = span.innerText.replace(/[R$.\s]/g, "").replace(",", ".");
+      span = parseFloat(span)
+      totalGastos -= span
+      elementoPai.remove();
+
+      corrigirSaldo();
     }
   </script>
 </html>
