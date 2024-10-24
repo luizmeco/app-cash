@@ -53,7 +53,6 @@
       }
       .container {
         margin-top: 5rem;
-        border-radius: 20px;
         min-width: 90%;
         min-height: 100vh;
         box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.497);
@@ -84,7 +83,7 @@
   <body>
     <div class="nav bg-success">
       <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="./telaApresentacao.html">
           <img src="./assets/logo.png" width="60" />
         </a>
         <button
@@ -102,7 +101,7 @@
           <ul class="navbar-nav position-absolute end-0">
             <li class="nav-item ml-2">
               <button class="btn btn-lg btn-warning">
-                <a class="nav-link text-white" href="#">Plano de Gastos</a>
+                <a class="nav-link text-white" href="./simulacaoInvestimento.html">Simulação de Invertimento</a>
               </button>
             </li>
             <li class="nav-item ms-4">
@@ -114,7 +113,7 @@
         </div>
       </nav>
     </div>
-    <div class="container bg-light">
+    <div class="container bg-light rounded-4">
       <div class="container-renda-mensal">
         <div class="d-flex gap-2">
           <div class="linha-renda bg-success"></div>
@@ -218,24 +217,8 @@
         },
       });
       if (type) {
-        var { value: descricaoGasto } = await Swal.fire({
-          title: "Insira o título do seu gasto",
-          input: "text",
-          inputPlaceholder: "Título",
-          confirmButtonColor: "#198754",
-          allowOutsideClick: false,
-          inputValidator: (value) => {
-            return new Promise((resolve) => {
-              if (value != 0) {
-                resolve();
-              } else {
-                resolve("Insira o Título!");
-              }
-            });
-          },
-        });
-        if (descricaoGasto) {
-          var { value: valorGasto } = await Swal.fire({
+
+        var { value: valorGasto } = await Swal.fire({
             title: "Insira o valor do seu gasto",
             input: "number",
             inputPlaceholder: "Valor",
@@ -253,6 +236,25 @@
               });
             },
           });
+        
+        if (valorGasto) {
+          
+          var { value: descricaoGasto } = await Swal.fire({
+          title: "Insira o título do seu gasto",
+          input: "text",
+          inputPlaceholder: "Título",
+          confirmButtonColor: "#198754",
+          allowOutsideClick: false,
+          inputValidator: (value) => {
+            return new Promise((resolve) => {
+              if (value != 0) {
+                resolve();
+              } else {
+                resolve("Insira o Título!");
+              }
+            });
+          },
+        });
         }
       }
       totalGastos += parseFloat(valorGasto);

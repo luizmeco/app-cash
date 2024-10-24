@@ -51,21 +51,19 @@
             justify-content: space-around;
           }
           .container {
-            margin-top: 5rem;
-            border-radius: 20px;
-            min-width: 90%;
-            min-height: 100vh;
-            box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.497);
-            padding: 3rem 2rem;
+            min-width: 100%;
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
           
           .img-fluid {
             max-width: 60%;
             
           }
-          .base{
-            margin-left: 10rem;
-            margin-right: 10rem;
+          .base {
+            width: 70%;
             display: flex;
           }
         </style>
@@ -73,7 +71,7 @@
     <body>
         <div class="nav bg-success">
         <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand " href="./telaInicio.html">
+            <a class="navbar-brand " href="./telaApresentacao.html">
               <img src="./assets/logo.png" width="60" />
             </a>
             <button
@@ -95,10 +93,10 @@
             </div>
           </nav>
         </div>
-        <div class=" mt-5 pt-5 d-flex flex-lg-row justify-content-center align-items-center">
-          <div class="base row align-items-top bg-white rounded shadow p-5">
+        <div class="container">
+          <div class="base row align-items-top bg-white shadow p-5 rounded-4">
             <div class="col-md-6">
-              <div class=" justify-content-center align-items-center text-center">
+              <div class="d-flex flex-column justify-content-center align-items-center text-center">
                 <div class="d-flex flex-column align-items-center justify-content-center">
                   <a href="../index.html">
                     <img id="logo" src="./assets/login.jpg" class="img-fluid" alt="Logo" />
@@ -113,7 +111,7 @@
             <div class="col-md-6">
               <div class="formulario">
                 <div>
-                  <div class="bg-white rounded shadow p-4">
+                  <div class="bg-white rounded shadow p-5">
                     <form>
                       <div class="mb-4">
                         <input type="text" class="form-control form-control-lg my-3" id="nome" placeholder="Nome" />
@@ -131,13 +129,13 @@
                             <input type="tel" class="form-control form-control-lg my-3" id="numero"
                               placeholder="Telefone (xx) xxxxx-xxxx" />
                           </div>
-                          <a href="#" class="btn btn-primary btn-lg w-100 my-3">Criar usuário</a>
+                          <a href="#" class="btn btn-success btn-lg w-100 my-3">Criar usuário</a>
                     </form>
                     <p id="comConta" class=" text-center">
                       Já possui conta?
                     </p>
                     <div style="justify-content: center; display: flex">
-                      <a href="./fazerLogin.html" class="criar-usuario" style="text-decoration: none; margin-top: -1rem;">Faça seu Login</a>
+                      <a href="./fazerLogin.html" class="criar-usuario text-success" style="text-decoration: none; margin-top: -1rem;">Faça seu Login</a>
                     </div>
                   </div>
                 </div>
