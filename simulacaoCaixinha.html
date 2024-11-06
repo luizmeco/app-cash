@@ -82,9 +82,7 @@
           <ul class="navbar-nav position-absolute end-0">
             <li class="nav-item ml-2">
               <button class="btn btn-lg btn-warning">
-                <a
-                  class="nav-link text-white"
-                  href="./planoDeGastos.html"
+                <a class="nav-link text-white" href="./planoDeGastos.html"
                   >Plano de Gastos</a
                 >
               </button>
@@ -102,11 +100,18 @@
       <form id="form">
         <div class="d-flex justify-content-around">
           <div class="text-center">
-            <p class="fs-2 text-success fw-bold">Valor Final</p>
+            <p class="fs-2 text-success fw-bold">Objetivo Final</p>
+            <div class="text-center mt-4">
+              <p style="max-width: 50%; margin: 0 auto">
+                Insira seu objetivo final, ou seja o dinheiro que
+                você quer ter guardado ao final do período.
+              </p>
+            </div>
             <div
+            style="max-width: 50%; margin: 0 auto;"
               class="input-group input-group-lg border border-2 border-success"
             >
-              <span class="input-group-text">$</span>
+              <span class="input-group-text">R$</span>
               <input
                 required
                 id="valor-final"
@@ -115,37 +120,53 @@
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-lg"
                 style="box-shadow: 0 0 0 0"
-                value="5"
+                value="12000"
                 min="1"
               />
               <span class="input-group-text">.00</span>
             </div>
-          </div>
-          <div class="text-center">
-            <p class="fs-2 text-success fw-bold">Dinheiro Guardado</p>
-            <div
-              class="input-group input-group-lg border border-2 border-success"
-            >
-              <span class="input-group-text">$</span>
-              <input
-                required
-                id="dinheiro-guardado"
-                type="number"
-                class="form-control"
-                aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-lg"
-                style="box-shadow: 0 0 0 0"
-                value="5"
-                min="0"
-              />
-              <span class="input-group-text">.00</span>
+  
+            <div class="text-center mt-5">
+              <p class="fs-2 text-success fw-bold">Dinheiro Guardado</p>
+              <div class="text-center mt-4">
+                <p style="max-width: 50%; margin: 0 auto">
+                  Insira o dinheiro que você ja possui guardado no momento, ou se não possuir pode deixar o valor como 0
+                </p>
+              </div>
+              <div
+              style="max-width: 50%; margin: 0 auto;"
+                class="input-group input-group-lg border border-2 border-success"
+              >
+                <span class="input-group-text">R$</span>
+                <input
+                  required
+                  id="dinheiro-guardado"
+                  type="number"
+                  class="form-control"
+                  aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-lg"
+                  style="box-shadow: 0 0 0 0"
+                  value="0"
+                  min="0"
+                />
+                <span class="input-group-text">.00</span>
+              </div>
             </div>
           </div>
+          
         </div>
         <div class="d-flex justify-content-around mt-5">
           <div class="text-center">
             <p class="fs-2 text-success fw-bold">Quantos anos</p>
-            <div class="input-group input-group-lg border border-2 border-success">
+            <div class="text-center mt-4">
+              <p style="max-width: 50%; margin: 0 auto">
+                Insira em quanto tempo você deseja chegar em seu objetivo final.
+              </p>
+            </div>
+            <div
+            style="max-width: 50%; margin: 0 auto;"
+              class="input-group input-group-lg border border-2 border-success"
+            >
               <input
                 required
                 id="anos"
@@ -154,7 +175,7 @@
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-lg"
                 style="box-shadow: 0 0 0 0"
-                value="5"
+                value="1"
                 min="1"
               />
             </div>
@@ -165,33 +186,37 @@
         </div>
       </form>
       <div class="text-center mt-5 d-flex justify-content-center">
-
         <p id="text-aporte" class="fs-1 text-success fw-bold"></p>
         <p id="valor-aporte" class="fs-1 text-success fw-bold"></p>
-
       </div>
     </div>
   </body>
   <script>
-    $(document).ready(function(){
-      $('#form').on('submit', function(e){
-        event.preventDefault()
-        
-        var valorFinal = $('#valor-final').val()
-        var dinheiroGuardado = $('#dinheiro-guardado').val()
-        var meses = $('#anos').val()*12
+    $(document).ready(function () {
+      $("#form").on("submit", function (e) {
+        event.preventDefault();
 
-        var aporteMensal = ((valorFinal-dinheiroGuardado)/meses).toFixed(2)
+        var valorFinal = $("#valor-final").val();
+        var dinheiroGuardado = $("#dinheiro-guardado").val();
+        var meses = $("#anos").val() * 12;
 
+        var aporteMensal = ((valorFinal - dinheiroGuardado) / meses).toFixed(2);
+
+        function converterParaReal(valor) {
+          valor = Number(valor);
+          return valor.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          });
+        }
 
         if (isNaN(aporteMensal) || aporteMensal == 0)
-        alert("Verifique os valores e tente novamente")
-        
-        else{
-          $('#text-aporte').html("Aporte Mensal:&nbsp")
-          $('#valor-aporte').html(aporteMensal)
+          alert("Verifique os valores e tente novamente");
+        else {
+          $("#text-aporte").html("Aporte Mensal:&nbsp");
+          $("#valor-aporte").html(converterParaReal(aporteMensal));
         }
-      })
-    })
+      });
+    });
   </script>
 </html>
