@@ -248,6 +248,8 @@
           inputValidator: (value) => {
             return new Promise((resolve) => {
               if (value != 0) {
+                totalGastos += parseFloat(valorGasto);
+                corrigirSaldo();
                 resolve();
               } else {
                 resolve("Insira o Título!");
@@ -257,9 +259,7 @@
         });
         }
       }
-      totalGastos += parseFloat(valorGasto);
 
-      corrigirSaldo();
 
       valorGasto = new Intl.NumberFormat("pt-BR", {
         style: "currency",
