@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cash</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+      body {
+        align-items: center;
+        justify-content: center;
+        background: rgb(255, 251, 185);
+        background: linear-gradient(
+          45deg,
+          rgba(255, 251, 185, 1) 0%,
+          rgba(163, 255, 209, 1) 100%
+        );
+      }
+      .nav {
+        min-width: 100%;
+        justify-content: center;
+        box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.274);
+      }
+      .navbar {
+        min-width: 80%;
+        justify-content: space-around;
+      }
+      .container {
+        margin-top: 5rem;
+        border-radius: 20px;
+        min-width: 90%;
+        min-height: 100vh;
+        box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.497);
+        padding: 3rem 2rem;
+      }
+
+      .img-fluid {
+        max-width: 60%;
+      }
+      .base {
+        margin-left: 10rem;
+        margin-right: 10rem;
+        display: flex;
+      }
+      .btn-primary {
+        margin-top: 40px;
+      }
+
+      .card-text {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 400;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav bg-success">
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="./telaInicio.html">
+          <img src="./assets/logo.png" width="60" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav position-absolute end-0"></ul>
+        </div>
+      </nav>
+    </div>
+    <div class="container bg-light text-center">
+      <h1>QUE TIPO DE INVESTIDOR VOCÊ É?</h1>
+
+      <div class="row">
+        <div class="col-md-4" style="padding: 10px">
+          <button class="btn btn-lg btn-primary">
+            Quero sair de uma dívida
+          </button>
+          <div class="card border-dark mt-4">
+            <div class="card-body">
+              <h4 class="card-title">Para você que está com problemas</h4>
+              <img src="./assets/1.png" alt="">
+              <p class="card-text">
+                Encontre o caminho para sair das dívidas com um plano financeiro
+                eficaz. Reduza gastos, renegocie compromissos e
+                controle melhor seu orçamento para alcançar a estabilidade
+                financeira!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" style="padding: 10px">
+          <button class="btn btn-lg btn-primary">
+            Quero começar a investir
+          </button>
+          <div class="card border-dark mt-4">
+            <div class="card-body">
+              <h4 class="card-title">Para você que está começando agora</h4>
+              <img src="./assets/2.png" alt="">
+              <p class="card-text">
+                Pronto para dar o primeiro passo nos investimentos? Descubra o
+                que considerar, como diversificar e onde investir para garantir
+                um futuro financeiro seguro e próspero!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" style="padding: 10px">
+          <button class="btn btn-lg btn-primary">Quero investir mais</button>
+          <div class="card border-dark mt-4">
+            <div class="card-body">
+              <h4 class="card-title">Tenho dinheiro e quero investir mais</h4>
+              <img src="./assets/3.png" alt="">
+              <p class="card-text">
+                Expanda seu portfólio e potencialize seus investimentos. Explore
+                novas oportunidades, otimize sua estratégia e conquiste melhores
+                resultados com um planejamento personalizado!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script></script>
+</html>
