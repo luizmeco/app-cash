@@ -32,6 +32,7 @@
         font-family: "Montserrat", sans-serif;
       }
       body {
+        height: 100vh;
         align-items: center;
         justify-content: center;
         background: rgb(255, 251, 185);
@@ -54,7 +55,7 @@
         margin-top: 5rem;
         border-radius: 20px;
         min-width: 90%;
-        min-height: 100vh;
+        max-height: 100vh;
         box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.497);
         padding: 3rem 2rem;
       }
@@ -102,14 +103,14 @@
       </nav>
     </div>
     <div class="container bg-light text-center">
-      <h1>QUE TIPO DE INVESTIDOR VOCÊ É?</h1>
+      <h1 style="margin-top: 2rem;" class="text-success fs-1 fw-bold">QUE TIPO DE INVESTIDOR VOCÊ É?</h1>
 
-      <div class="row">
+      <div style="margin-top: 5rem;" class="row">
         <div class="col-md-4" style="padding: 10px">
-          <button class="btn btn-lg btn-primary">
+          <button onclick="irParaIndex()" class="btn btn-lg btn-danger fw-bold fs-3">
             Quero sair de uma dívida
           </button>
-          <div class="card border-dark mt-4">
+          <div class="card border-danger border-2 mt-4">
             <div class="card-body">
               <h4 class="card-title">Para você que está com problemas</h4>
               <img src="./assets/1.png" alt="">
@@ -123,10 +124,10 @@
           </div>
         </div>
         <div class="col-md-4" style="padding: 10px">
-          <button class="btn btn-lg btn-primary">
+          <button onclick="irParaIndex()" class="btn btn-lg btn-warning text-white fw-bold fs-3">
             Quero começar a investir
           </button>
-          <div class="card border-dark mt-4">
+          <div class="card border-warning border-2 mt-4">
             <div class="card-body">
               <h4 class="card-title">Para você que está começando agora</h4>
               <img src="./assets/2.png" alt="">
@@ -139,8 +140,8 @@
           </div>
         </div>
         <div class="col-md-4" style="padding: 10px">
-          <button class="btn btn-lg btn-primary">Quero investir mais</button>
-          <div class="card border-dark mt-4">
+          <button onclick="irParaIndex()" class="btn btn-lg btn-success fw-bold fs-3">Quero investir mais</button>
+          <div class="card border-success border-2 mt-4">
             <div class="card-body">
               <h4 class="card-title">Tenho dinheiro e quero investir mais</h4>
               <img src="./assets/3.png" alt="">
@@ -155,5 +156,9 @@
       </div>
     </div>
   </body>
-  <script></script>
+  <script>
+    function irParaIndex(){
+      window.location.href = "./index.html"
+    }
+  </script>
 </html>

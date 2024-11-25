@@ -33,6 +33,7 @@
         font-family: "Montserrat", sans-serif;
       }
       body {
+        height: 100vh;
         align-items: center;
         justify-content: center;
         background: rgb(255, 251, 185);
@@ -53,8 +54,8 @@
       }
       .container {
         margin-top: 5rem;
-        min-width: 90%;
-        min-height: 80vh;
+        max-width: 90%;
+        max-width: 80vh;
         box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.497);
         padding: 3rem 2rem;
       }
@@ -86,31 +87,34 @@
       </nav>
     </div>
     <div class="container bg-light rounded-4">
-      <div class="d-flex justify-content-around">
+      <div class="d-flex flex-column justify-content-around gap-5">
         <a href="./planoDeGastos.html">
           <div
+          style="max-width: 50%; margin: 0 auto;"
             class="links p-4 rounded-4 border border-5 border-warning d-flex justify-content-around align-items-center gap-3"
           >
-            <span class="fw-bold fs-3 text-warning">Plano de Gastos</span>
+            <span class="fw-bold fs-2 text-warning">Plano de Gastos</span>
             <i
-              class="fa-solid fa-hand-holding-dollar text-warning fs-3"
+              class="fa-solid fa-hand-holding-dollar text-warning fs-1"
             ></i></div
         ></a>
         <a href="./simulacaoCaixinha.html">
           <div
+          style="max-width: 50%; margin: 0 auto;"
             class="links p-4 rounded-4 border border-5 border-success d-flex justify-content-around align-items-center gap-3"
           >
-            <span class="fw-bold fs-3 text-success">Simulação Caixinha</span>
+            <span class="fw-bold fs-2 text-success">Simulação Caixinha</span>
             <i
-              class="fa-solid fa-money-bill-trend-up text-success fs-3"
+              class="fa-solid fa-money-bill-trend-up text-success fs-1"
             ></i></div
         ></a>
         <a href="./videos.html"
           ><div
+          style="max-width: 50%; margin: 0 auto;"
             class="links p-4 rounded-4 border border-5 border-danger d-flex justify-content-around align-items-center gap-3"
           >
-            <span class="fw-bold fs-3 text-danger">Vídeos</span>
-            <i class="fa-brands fa-youtube text-danger fs-3"></i></div
+            <span class="fw-bold fs-2 text-danger">Vídeos</span>
+            <i class="fa-brands fa-youtube text-danger fs-1"></i></div
         ></a>
       </div>
     </div>
